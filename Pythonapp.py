@@ -7,11 +7,11 @@ app = Flask("MailTestApp")
 def hello():
     return "Quiz (/quiz)"
 
-@app.route("/signup", methods=["POST"])
+@app.route("/EndQuiz", methods=["POST"])
 def sign_up():
     form_data = request.form
     print form_data["Q1"]
-    send_simple_message(form_data["email"])
+#    send_simple_message(form_data["email"])
     return "ok"
 
 #can only display static webpages, cannot do dynamic, can only host locally
