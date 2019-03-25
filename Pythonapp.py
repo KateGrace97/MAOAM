@@ -5,14 +5,15 @@ from flask import Flask, render_template, request #second one is capitalised, mo
 app = Flask("MailTestApp")
 @app.route("/") #Decorator - telling it where to get it from
 def hello():
-    return "Quiz (/quiz)"
+    return "Quiz --> got to ....../quiz"
 
 @app.route("/EndQuiz", methods=["POST"])
 def sign_up():
     form_data = request.form
-    print form_data["Q1"]
-#    send_simple_message(form_data["email"])
-    return "ok"
+    print form_data
+    send_simple_message(form_data["email"])
+    return finished.html
+
 
 #can only display static webpages, cannot do dynamic, can only host locally
 
@@ -30,9 +31,9 @@ def send_simple_message(email):
         data={"from": "Excited User <mailgun@sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org>",
               "to": email,
               "subject": "Pub Quiz",
-              "text": "Nice try"})
+              "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
 
-
+window.open(finished.html)
 app.run(debug=True) #doesn't debug the code - just calls you out when you've screwed up
 app.run()
 
