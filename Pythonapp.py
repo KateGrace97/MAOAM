@@ -1,4 +1,12 @@
-
+import requests
+def send_simple_message(email):
+    return requests.post(
+        "https://api.mailgun.net/v3/sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org/messages",
+        auth=("api", "2dbcea6e515b8c91a9271664618d809f-de7062c6-bb2cb17d"),
+        data={"from": "Excited User <mailgun@sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org>",
+              "to": email,
+              "subject": "Pub Quiz",
+              "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
 
 
 from flask import Flask, render_template, request #second one is capitalised, module and then library
@@ -11,8 +19,8 @@ def hello():
 def sign_up():
     form_data = request.form
     print form_data
-    send_simple_message(form_data["email"])
-    return finished.html
+    send_simple_message("email")
+    return "form_data"
 
 
 #can only display static webpages, cannot do dynamic, can only host locally
@@ -23,17 +31,6 @@ def hello_someone():
 
 
 
-import requests
-def send_simple_message(email):
-    return requests.post(
-        "https://api.mailgun.net/v3/sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org/messages",
-        auth=("api", "2dbcea6e515b8c91a9271664618d809f-de7062c6-bb2cb17d"),
-        data={"from": "Excited User <mailgun@sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org>",
-              "to": email,
-              "subject": "Pub Quiz",
-              "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
-
-window.open(finished.html)
 app.run(debug=True) #doesn't debug the code - just calls you out when you've screwed up
 app.run()
 
