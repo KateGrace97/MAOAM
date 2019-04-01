@@ -1,14 +1,13 @@
 import requests
 def send_simple_message(email):
     return requests.post(
-        "https://api.mailgun.net/v3/sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org/messages",
-        auth=("api", "2dbcea6e515b8c91a9271664618d809f-de7062c6-bb2cb17d"),
-        data={"from": "Excited User <mailgun@sandbox6eca69341ec64cbe81055f003ef578db.mailgun.org>",
+        "https://api.mailgun.net/v3/sandbox2d1816a7301044609f33f7ca54f560be.mailgun.org/messages",
+        auth=("api", "3018c97283cb2b10930699e29802a5d5-de7062c6-fe66ae0c"),
+        data={"from": "Quiz Team <mailgun@sandbox2d1816a7301044609f33f7ca54f560be.mailgun.org>",
               "to": email,
               "subject": "Pub Quiz",
               "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
 
-              
 
 from flask import Flask, render_template, request #second one is capitalised, module and then library
 app = Flask("MailTestApp")
@@ -34,7 +33,16 @@ def sign_up():
 def hello_someone():
     return render_template("quiz.html")
 
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
 
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 
 app.run(debug=True) #doesn't debug the code - just calls you out when you've screwed up
 app.run()
