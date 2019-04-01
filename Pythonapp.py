@@ -24,7 +24,7 @@ def sign_up():
     #the form that redirects to "/EndQuiz" doesnt have an email feild
     #once that is sorted you need to parse <form_data['email']> in to the send_simple_message() funtion
     #print form_data['email']
-    send_simple_message(form_data['email'])
+    send_simple_message(form_data)
     return render_template("finished.html")
 
 
