@@ -9,6 +9,7 @@ def send_simple_message(email):
               "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
 
 
+
 from flask import Flask, render_template, request #second one is capitalised, module and then library
 app = Flask("MailTestApp")
 @app.route("/") #Decorator - telling it where to get it from
@@ -19,8 +20,12 @@ def hello():
 def sign_up():
     form_data = request.form
     print form_data
-    send_simple_message("email")
-    return "form_data"
+    #problem with all the different forms in html doc
+    #the form that redirects to "/EndQuiz" doesnt have an email feild
+    #once that is sorted you need to parse <form_data['email']> in to the send_simple_message() funtion
+    #print form_data['email']
+    send_simple_message(form_data['email'])
+    return render_template("finished.html")
 
 
 #can only display static webpages, cannot do dynamic, can only host locally
