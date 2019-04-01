@@ -34,7 +34,16 @@ def sign_up():
 def hello_someone():
     return render_template("quiz.html")
 
-
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+    
+@app.route('/shutdown', methods=['GET'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 
 app.run(debug=True) #doesn't debug the code - just calls you out when you've screwed up
 app.run()
