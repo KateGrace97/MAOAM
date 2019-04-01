@@ -8,7 +8,7 @@ def send_simple_message(email):
               "subject": "Pub Quiz",
               "text": "The correct answers were Kaley Cuoco, Boston, and Ben-Hur! "})
 
-
+              
 
 from flask import Flask, render_template, request #second one is capitalised, module and then library
 app = Flask("MailTestApp")
