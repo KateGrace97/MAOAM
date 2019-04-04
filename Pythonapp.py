@@ -29,7 +29,7 @@ def save_form():
 
 @app.route("/quiz")
 def hello_someone():
-    return render_template("quiz.html")
+    return render_template("index.html")
 
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
